@@ -1,18 +1,13 @@
 <?php
 
-/*
- * This file is part of the leonis/easysms-notification-channel.
- * (c) yangliulnn <yangliulnn@163.com>
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
- */
+
 
 namespace Xin6841414\EasySms;
 
 use Illuminate\Support\ServiceProvider;
 use Overtrue\EasySms\EasySms;
 
-class EasySmsChannelServiceProvider extends ServiceProvider
+class EasySmsServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap any application services.
