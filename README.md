@@ -48,3 +48,6 @@ $ composer require xin6841414/easy-sms
             ], $gateways);
  ```
 其他用法请参考 [overtrue/easy-sms](https://github.com/overtrue/easy-sms)
+
+## 鸣谢
+代码参考: [leonis/easysms-notification-channel](https://github.com/yl/easysms-notification-channel)
