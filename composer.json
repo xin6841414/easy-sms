@@ -1,0 +1,33 @@
+{
+	"name": "xin6841414/easy-sms",
+	"description": "extend from overtrue/easy-sms, add chuanglanv2 support.",
+	"keywords": ["laravel", "chuanglanv2", "easysms"],
+	"type": "library",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "xin6841414",
+			"email": "xin6841414@163.com"
+		}
+	],
+	"require": {
+		"overtrue/easy-sms": "^2.0"
+	},
+	"autoload": {
+		"psr-4": {
+			"Xin6841414\\EasySms\\": "src"
+		}
+	},
+	"config": {
+		"sort-packages": true
+	},
+	"extra": {
+		"laravel": {
+			"providers": [
+				"Xin6841414\\EasySms\\EasySmsServiceProvider"
+			]
+		}
+	},
+	"minimum-stability": "dev",
+	"prefer-stable": true
+}
