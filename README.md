@@ -17,14 +17,14 @@ $ composer require xin6841414/easy-sms
     ```php
     'providers' => [
         // ...
-        Xin6841414\EasySms\EasySmsChannelServiceProvider::class,
+        Xin6841414\EasySms\EasySmsServiceProvider::class,
     ],
     ```
 
 2. 创建配置文件：
 
     ```shell
-    $ php artisan vendor:publish --provider="Xin6841414\EasySms\EasySmsChannelServiceProvider"
+    $ php artisan vendor:publish --provider="Xin6841414\EasySms\EasySmsServiceProvider"
     ```
 
 3. 修改应用根目录下的 config/easysms.php 中对应的参数即可。
