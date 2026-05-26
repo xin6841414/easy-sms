@@ -6,6 +6,7 @@ namespace Xin6841414\EasySms;
 
 use Illuminate\Support\ServiceProvider;
 use Overtrue\EasySms\EasySms;
+use Illuminate\Validation\Factory;
 
 class EasySmsServiceProvider extends ServiceProvider
 {
@@ -19,6 +20,17 @@ class EasySmsServiceProvider extends ServiceProvider
                 __DIR__.'/../config/easysms.php' => config_path('easysms.php'),
             ]);
         }
+        /* @var Factory $validator */
+        $validator = $this->app['validator'];
+
+        // Validator extensions
+        $validator->extend('sms_code_check', function ($attribute, $value, $parameters) {
+            return sms_code_check($parameters[0],$parameters[1], $value);
+        });
+        $validator->replacer('sms_code_check', function ($message, $attribute, $rule, $parameters) {
+            return __('The SMS verification code is incorrect or has expired');
+        });
+
     }
 
     /**
