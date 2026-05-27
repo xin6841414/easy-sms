@@ -41,10 +41,10 @@ use Xin6841414\EasySms\Traits\Sms;
      {
        $mobile = '177xxx1234';
        $template = '0'; // 模板ID非短信运营商短信模板ID, 在config/easysms.php中配置sms_templates项
-       $parameter = [
-        'code' => 123456,
+       $parameter = [      
         'time' => 5,
-       ];  // 模板参数, 对应模板中的参数,按顺序传入任意数量, key键任意定义,代码会顺序替换为模板中的键名
+        'operate' => '登录'
+       ];  // 模板参数, 对应模板中的参数(除去首位code,代码中自动生成),按顺序传入任意数量, key键任意定义(不允许使用键名code会导致code被替换),代码会顺序替换为模板中的键名
        $gateways= ['chuanglanv2']; // 指定发送的短信服务商, 名称来自config/easysms.php中gateways项
        $result = $this->sendSms($mobile,$template,$parameter,$gateways);
        //['code' => true, 'msg' => '短信已发送', 'data' =>[
@@ -59,7 +59,7 @@ use Xin6841414\EasySms\Traits\Sms;
        $request->validate([
            'mobile' => 'required|regex:/^1[3456789]\d{9}$/', //手机号
            'verificationCode_key' => 'required', //验证码key,即上一步发送短信返回的key
-            'code' => 'required|sms_code_check:verificationCode_key,mobile',
+            'code' => 'required|sms_code_check:'.$request->verificationCode_key','.$request->mobile,
         ]);
         ...
       } 

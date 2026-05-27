@@ -16,7 +16,10 @@
 	"autoload": {
 		"psr-4": {
 			"Xin6841414\\EasySms\\": "src"
-		}
+		},
+		"files": [
+			"src/helpers.php"
+		]
 	},
 	"config": {
 		"sort-packages": true

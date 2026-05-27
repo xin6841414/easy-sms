@@ -22,7 +22,8 @@ class EasySmsServiceProvider extends ServiceProvider
         }
         /* @var Factory $validator */
         $validator = $this->app['validator'];
-
+        // 加载辅助函数文件
+        $this->loadHelpers();
         // Validator extensions
         $validator->extend('sms_code_check', function ($attribute, $value, $parameters) {
             return sms_code_check($parameters[0],$parameters[1], $value);
@@ -31,6 +32,12 @@ class EasySmsServiceProvider extends ServiceProvider
             return __('The SMS verification code is incorrect or has expired');
         });
 
+    }
+    protected function loadHelpers()
+    {
+        foreach (glob(__DIR__ . '/Helpers/*.php') as $filename) {
+            require_once $filename;
+        }
     }
 
     /**

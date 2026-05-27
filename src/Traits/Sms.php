@@ -58,7 +58,7 @@ trait Sms
                 return $this->returnArr('测试短信验证码('.$code.')发送成功！', true, $data);
             }
             $result = app('easysms')->send($mobile,
-                $this->smsTemplate($parameter, $template), $gateways);
+                $this->smsTemplate(array_merge(['code' => $code],$parameter), $template), $gateways);
             foreach($gateways as $gateway) {
                 if ($result[$gateway]['status'] == 'success') {
                     $data['smsGateway'] = $gateway;
@@ -102,17 +102,18 @@ trait Sms
 //                //传入的参数个数和模板参数个数不一致
 //                throw new \Exception('传入的参数个数和模板参数个数不一致');
 //            }
-            if (isset(config('easysms.sms_templates')[$templateId]['content'])){
-                $content = vsprintf(config('easysms.sms_templates')[$templateId]['content'], $parameter);
-            }
 
-            $data = [];
+            $data = config('easysms.sms_templates')[$templateId]['data'];
             $keys = array_keys(config('easysms.sms_templates')[$templateId]['data']);
             $values = array_values($parameter);
             for ($i = 0; $i < count($keys); $i++) {
                 if (isset($values[$i])) {
                     $data[$keys[$i]] = $values[$i];
                 }
+            }
+            $content = '';
+            if (isset(config('easysms.sms_templates')[$templateId]['content']) && $data){
+                $content = vsprintf(config('easysms.sms_templates')[$templateId]['content'], $data);
             }
             $template = config('easysms.sms_templates')[$templateId]['template'];
             return compact('template','content', 'data');
