@@ -15,7 +15,7 @@ use Log;
 
 trait Sms
 {
-    use regularValidate;
+    use RegularValidate;
 
 
     public function returnArr($msg = '', $code = false, array $data = [])
